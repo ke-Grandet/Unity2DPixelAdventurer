@@ -1,0 +1,12 @@
+.plastic
+.vs
+Assets/AllRes*
+BuildForWindows*
+Library
+Logs
+UserSettings
+.vsconfig
+*.csproj
+ignore.conf
+*.sln
+
