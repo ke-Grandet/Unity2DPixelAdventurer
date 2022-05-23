@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    [Header("告示牌文本")]
+    public RectTransform tipSignPanel;
     [Header("玩家血条")]
     public RectTransform playerHealthFill;
     [Header("分数界面")]
@@ -29,7 +32,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(Instance);
     }
 
     private void Start()
@@ -42,11 +45,6 @@ public class GameManager : MonoBehaviour
     {
         this.score += score;
         scoreText.text = this.score.ToString();
-    }
-
-    public void StartGame()
-    {
-        // todo 主界面点击开始游戏
     }
 
     public void PauseGame()
@@ -63,22 +61,32 @@ public class GameManager : MonoBehaviour
 
     public void MainMenu()
     {
-        score = 0;
-        Time.timeScale = 1f;
-        pauseButton.gameObject.SetActive(false);
-        pausePanel.gameObject.SetActive(false);
+        //score = 0;
+        //Time.timeScale = 1f;
+        //pauseButton.gameObject.SetActive(false);
+        //pausePanel.gameObject.SetActive(false);
         // todo 跳转到主界面
+        Destroy(Instance.gameObject);
+        Instance = null;
+        Time.timeScale = 1f;
+        StartCoroutine(MainMenuCoro());
     }
-
-    public void ExitGame()
+    IEnumerator MainMenuCoro()
     {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(0);
+        while (!asyncOperation.isDone)
+        {
+            yield return null;
+        }
     }
 
+    // 现隐告示牌文本
+    public void TipSignText(bool isActive)
+    {
+        tipSignPanel.gameObject.SetActive(isActive);
+    }
+
+    // 更新玩家血条
     public void UpdatePlayerHealthUI(float percent)
     {
         Debug.Log("剩余生命值比例:" + percent);

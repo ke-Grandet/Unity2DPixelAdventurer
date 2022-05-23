@@ -43,10 +43,13 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Trap
+  - name: Background
+    uniqueID: 452848043
+    locked: 0
+  - name: Ground
     uniqueID: 1998317541
     locked: 0
-  - name: Items
+  - name: Item
     uniqueID: 2287533995
     locked: 0
   - name: Enemy
@@ -59,5 +62,5 @@ TagManager:
     uniqueID: 3600487351
     locked: 0
   - name: UI
-    uniqueID: 452848043
+    uniqueID: 2036658731
     locked: 0

@@ -241,7 +241,7 @@ MonoBehaviour:
   backSpeed: 50
   groundLayer:
     serializedVersion: 2
-    m_Bits: 4352
+    m_Bits: 256
   groundOffset: 0.018
 --- !u!114 &6459916877279769547
 MonoBehaviour:

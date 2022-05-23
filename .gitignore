@@ -4,9 +4,9 @@ Assets/AllRes*
 BuildForWindows*
 Library
 Logs
+Temp
 UserSettings
 .vsconfig
 *.csproj
 ignore.conf
 *.sln
-
